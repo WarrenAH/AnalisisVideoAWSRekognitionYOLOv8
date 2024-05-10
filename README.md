@@ -1,1 +1,4 @@
 # AnalisisVideoAWSRekognitionYOLOv8
+
+## Descripción del Proyecto
+El programa utiliza el reconocimiento facial de Microsoft Azure mejor conocido como Face API, en este caso, para detectar caras se utilizan videos en formato ".mp4"  que se guardaran en la carpeta “video” para obtener sus fotogramas por medio de una función, luego, son guardados en una carpeta llamada "fotograma" y en una subcarpeta de "fotogramaCara" llamada "temp". Una vez obtenidos esos fotogramas Face API verificara de uno en uno si hay una o múltiples caras, si hay se imprimirán datos en la consola como su edad o emociones, además, dibujara un cuadrado de la o caras detectadas en la imagen y se guardara en la carpeta "fotogramaCara", en caso contrario simplemente dirá que no se encuentra ninguna, cuando se finaliza el programa se guardara en la misma carpeta de "fotogramaCara" una imagen con las emociones obtenidas de las personas en forma de estadística.
