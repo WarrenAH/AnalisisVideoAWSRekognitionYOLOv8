@@ -1,4 +1,25 @@
 # AnalisisVideoAWSRekognitionYOLOv8
 
 ## Descripción del Proyecto
-El programa utiliza el reconocimiento facial de Microsoft Azure mejor conocido como Face API, en este caso, para detectar caras se utilizan videos en formato ".mp4"  que se guardaran en la carpeta “video” para obtener sus fotogramas por medio de una función, luego, son guardados en una carpeta llamada "fotograma" y en una subcarpeta de "fotogramaCara" llamada "temp". Una vez obtenidos esos fotogramas Face API verificara de uno en uno si hay una o múltiples caras, si hay se imprimirán datos en la consola como su edad o emociones, además, dibujara un cuadrado de la o caras detectadas en la imagen y se guardara en la carpeta "fotogramaCara", en caso contrario simplemente dirá que no se encuentra ninguna, cuando se finaliza el programa se guardara en la misma carpeta de "fotogramaCara" una imagen con las emociones obtenidas de las personas en forma de estadística.
+El presente proyecto fue creado con la finalidad de detección de rostros de personas en videos (específicamente en películas), así como armas o vehículos, utilizando multiprocesamiento, para así procesar “N” cantidad de videos a la vez y mostrar resultados, sin necesidad de que se termine el programa por completo. Gracias a la extracción de fotogramas en los videos se puede conocer si algún objeto aparece en un fotograma en específico, así como reconocer si una persona en específico está en dicho fotograma. 
+
+## Instrucciones de Instalación
+Para utilizar el presente proyecto, es necesario tener instalado Python, así como las siguientes librerías:
+ 1. os 
+ 2. shutil
+ 3. threading
+ 4. time
+ 5. boto3
+ 6. io
+ 7. cv2
+ 8. tkinter
+
+## Explicación de cada librería
+os: Es utilizada para el manejo de carpetas dentro del proyecto.
+shutil: Su función es manipular las carpetas que existan dentro de una carpeta.
+threading: Gracias a esta, se puede utilizar el multiprocesamiento.
+time: Utilizada para pausar la ejecución en ciertas partes del código en el multiprocesamiento.
+boto3: Es para utilizar los distintos servicios de AWS, en especifico el S3 (subir imágenes del entrenamiento en el almacenamiento de la nube), DynamoDB (base de datos que permite manejar a través de una tabla cada una de las personas registradas en el entrenamiento) y Rekognition (detección de personas y rostros).
+io: Es implementada en el manejo de archivos, como en los fotogramas de los videos.
+cv2: Creación de etiquetas y cuadros de caras o objetos detectados en los fotogramas de los videos.
+tkinter: Utilización de interfaz gráfica en Python.
