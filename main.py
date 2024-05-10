@@ -448,9 +448,10 @@ def InterfazGraficaVideosBusqueda():
         rutasVideos = [labelRuta1.cget("text"), labelRuta2.cget("text"), labelRuta3.cget("text")]
         rutasArchivos = [ruta.split(': ')[1] for ruta in rutasVideos if
                          ruta]
+        hilo = threading.Thread(target=Programa, args=[rutasArchivos], daemon=True).start()
+        time.sleep(10)
         InterfazGraficaResultadosImagenes()
         InterfazGraficaResultadosTexto()
-        hilo = threading.Thread(target=Programa, args=[rutasArchivos], daemon=True).start()
         OcultarVentana()
         ActivarBotones()
 
@@ -476,6 +477,15 @@ def InterfazGraficaVideosBusqueda():
 
     if not os.path.exists("./Video"):
         os.makedirs("./Video")
+
+    if not os.path.exists("./Modelo"):
+        os.makedirs("./Modelo")
+
+    if not os.path.exists("./Entrenamiento"):
+        os.makedirs("./Entrenamiento")
+
+    if not os.path.exists("./Fotograma"):
+        os.makedirs("./Fotograma")
 
     ventana = tk.Tk()
     ventana.title("Buscar videos analisis")
