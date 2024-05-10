@@ -15,17 +15,26 @@ Para utilizar el presente proyecto, es necesario tener instalado Python, así co
  8. tkinter
 
 ## Explicación de cada librería
- 1. os: Es utilizada para el manejo de carpetas dentro del proyecto.
-2. En el CMD de Windows se debe tener acceso a la carpeta donde se encuentra el repositorio clonado, se debe ejecutar el siguiente comando: 
+Una vez instaladas, es necesario tener una cuenta en AWS para acceder a los servicios de: Lambda, S3, Rekognition, y DynamoDB, luego, seguir los siguientes pasos:
+ 1. Se deberá acceder a AWS y buscar IAM (Identity and Access Management), dentro, se debe acceder a la sección que dice Administración del acceso. Una vez en esta sección se mostrará el Panel de IAM, y se deberá tocar el botón que dice Administrar las claves de acceso. Luego, se debe ir donde dice Claves de acceso, tocar el botón que dice Crear clave de acceso, se nos pedirá confirmación, se acepta, una vez creado, se debe apuntar la Clave de acceso y la Clave de acceso secreta, ya que se necesitaran más adelante.
+ 2. En el CMD de Windows se debe tener acceso a la carpeta donde se encuentra el repositorio clonado, se debe ejecutar el siguiente comando: 
 ```
 aws configure
 ```
-2. Se pedirá primeramente la Clave de acceso, la Clave de acceso secreta y cuando se pida la región se deberá colocar lo siguiente: "us-east-1". Una vez hecho esto, se debe ejecutar el siguiente comando: "aws rekognition create-collection --collection-id actores --region us-east-1", se desplegará un mensaje de que fue creado. Luego, se debe ejecutar este otro comando: "aws dynamodb create-table --table-name face_recognition --attribute-definitions AttributeName=RekognitionId,AttributeType=S --key-schema AttributeName=RekognitionId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1", se desplegará un mensaje de que fue creado. El ultimo comando sería el siguiente: "aws s3 mb s3://actores --region us-east-1"
+ 3. Se pedirá primeramente la Clave de acceso, la Clave de acceso secreta y cuando se pida la región se deberá colocar lo siguiente: 
+```
+us-east-1
+```
+ 4. Una vez hecho esto, se debe ejecutar el siguiente comando: 
+```
+aws rekognition create-collection --collection-id actores --region us-east-1", se desplegará un mensaje de que fue creado. Luego, se debe ejecutar este otro comando: "aws dynamodb create-table --table-name face_recognition --attribute-definitions AttributeName=RekognitionId,AttributeType=S --key-schema AttributeName=RekognitionId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1
+```
+5. Se desplegará un mensaje de que fue creado. El ultimo comando sería el siguiente:
+```
+aws s3 mb s3://actores --region us-east-1
+```
+ 6. En IAM, se debe acceder a la sección de Roles, darle en el botón que dice Crear rol, seleccionar Servicio de AWS, en Servicio o caso de uso se debe escoger Lambda, se debe continuar y donde dice Nombre del rol se debe escribir el siguiente: 
+```
+face_recognition 
+```
 
-
- 3. threading: Gracias a esta, se puede utilizar el multiprocesamiento.
- 4. time: Utilizada para pausar la ejecución en ciertas partes del código en el multiprocesamiento.
- 5. boto3: Es para utilizar los distintos servicios de AWS, en específico el S3 (subir imágenes del entrenamiento en el almacenamiento de la nube), DynamoDB (base de datos que permite manejar a través de una tabla cada una de las personas registradas en el entrenamiento) y Rekognition (detección de personas y rostros).
- 6. io: Es implementada en el manejo de archivos, como en los fotogramas de los videos.
- 7. cv2: Creación de etiquetas y cuadros de caras u objetos detectados en los fotogramas de los videos.
- 8. tkinter: Utilización de interfaz gráfica en Python.
