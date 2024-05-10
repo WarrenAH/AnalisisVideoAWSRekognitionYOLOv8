@@ -16,7 +16,12 @@ Para utilizar el presente proyecto, es necesario tener instalado Python, así co
 
 ## Explicación de cada librería
  1. os: Es utilizada para el manejo de carpetas dentro del proyecto.
- 2. En el CMD de Windows se debe tener acceso a la carpeta donde se encuentra el repositorio clonado, se debe ejecutar el siguiente comando: ```aws configure```. Se pedirá primeramente la Clave de acceso, la Clave de acceso secreta y cuando se pida la región se deberá colocar lo siguiente: "us-east-1". Una vez hecho esto, se debe ejecutar el siguiente comando: "aws rekognition create-collection --collection-id actores --region us-east-1", se desplegará un mensaje de que fue creado. Luego, se debe ejecutar este otro comando: "aws dynamodb create-table --table-name face_recognition --attribute-definitions AttributeName=RekognitionId,AttributeType=S --key-schema AttributeName=RekognitionId,KeyType=HASH --provisioned-throughput 
+2. En el CMD de Windows se debe tener acceso a la carpeta donde se encuentra el repositorio clonado, se debe ejecutar el siguiente comando: 
+```
+aws configure
+```
+Se pedirá primeramente la Clave de acceso, la Clave de acceso secreta y cuando se pida la región se deberá colocar lo siguiente: "us-east-1". Una vez hecho esto, se debe ejecutar el siguiente comando: "aws rekognition create-collection --collection-id actores --region us-east-1", se desplegará un mensaje de que fue creado. Luego, se debe ejecutar este otro comando: "aws dynamodb create-table --table-name face_recognition --attribute-definitions AttributeName=RekognitionId,AttributeType=S --key-schema AttributeName=RekognitionId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1", se desplegará un mensaje de que fue creado. El ultimo comando sería el siguiente: "aws s3 mb s3://actores --region us-east-1"
+
  3. threading: Gracias a esta, se puede utilizar el multiprocesamiento.
  4. time: Utilizada para pausar la ejecución en ciertas partes del código en el multiprocesamiento.
  5. boto3: Es para utilizar los distintos servicios de AWS, en específico el S3 (subir imágenes del entrenamiento en el almacenamiento de la nube), DynamoDB (base de datos que permite manejar a través de una tabla cada una de las personas registradas en el entrenamiento) y Rekognition (detección de personas y rostros).
