@@ -5,17 +5,17 @@ El presente proyecto fue creado con la finalidad de detección de rostros de per
 
 ## Instrucciones de Instalación
 El presente proyecto fue credo utilizando Windows. Es necesario tener instalado Python, así como las siguientes librerías:
- 1. os 
- 2. shutil
- 3. threading
- 4. time
- 5. boto3
- 6. io
- 7. cv2
- 8. tkinter
- 9. pil
- 10. ultralytics
- 11. moviepy.editor
+ - os 
+ - shutil
+ - threading
+ - time
+ - boto3
+ - io
+ - cv2
+ - tkinter
+ - pil
+ - ultralytics
+ - moviepy.editor
 Una vez instaladas, es necesario tener una cuenta en AWS para acceder a los servicios de: Lambda, S3, Rekognition, y DynamoDB, luego, seguir los siguientes pasos:
  1. Se deberá acceder a AWS y buscar IAM (Identity and Access Management), dentro, se debe acceder a la sección que dice Administración del acceso. Una vez en esta sección se mostrará el Panel de IAM, y se deberá tocar el botón que dice Administrar las claves de acceso. Luego, se debe ir donde dice Claves de acceso, tocar el botón que dice Crear clave de acceso, se nos pedirá confirmación, se acepta, una vez creado, se debe apuntar la Clave de acceso y la Clave de acceso secreta, ya que se necesitaran más adelante.
  2. En el CMD de Windows se debe tener acceso a la carpeta donde se encuentra el repositorio clonado, se debe ejecutar el siguiente comando: 
