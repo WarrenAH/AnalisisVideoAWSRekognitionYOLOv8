@@ -206,4 +206,8 @@ Vin_Diesel.jpg
  11. moviepy.editor: Su función es dividir en fotogramas los videos seleccionados.
 
 ## Guía de Uso 
-Una vez instalado y configurado el sistema, se deberá ejecutar el código, escoger máximo 3 videos con los cuales el programa trabajara y darle al botón de Continuar, una vez hecho esto, se ejecutara en multiprocesamiento una extracción de fotogramas donde se mostraran 2 ventanas distintas, una donde se podrá revisar fotograma por fotograma del video los resultados que se encontraron en estos, otra que explicara cuantos objetos se encontraron, cuales en específico así como cuales personas se encontraron y en que fotograma. Los resultados se podrán apreciar en tiempo real sin necesidad de que el programa finalice.
+Una vez instalado y configurado el sistema, se deberá ejecutar el código, escoger máximo 3 videos con los cuales el programa trabajara (solo se pueden utilizar videos en formato .mp4) y darle al botón de Continuar, una vez hecho esto, se ejecutara en multiprocesamiento una extracción de fotogramas donde se mostraran 2 ventanas distintas, una donde se podrá revisar fotograma por fotograma del video los resultados que se encontraron en estos, otra que explicara cuantos objetos se encontraron, cuales en específico así como cuales personas se encontraron y en que fotograma. Los resultados se podrán apreciar en tiempo real sin necesidad de que el programa finalice.
+
+## Documentacion de API
+AWS Rekognition: https://aws.amazon.com/es/rekognition/
+YOLOv8: https://docs.ultralytics.com/
