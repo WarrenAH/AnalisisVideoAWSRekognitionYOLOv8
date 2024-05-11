@@ -212,3 +212,8 @@ Una vez instalado y configurado el sistema, se deberá ejecutar el código, esco
  - AWS Rekognition: https://aws.amazon.com/es/rekognition/
  - YOLOv8: https://docs.ultralytics.com/
 
+## Contribuciones y Créditos
+ - Tech Raj. (27 de junio de 2022). Create your own Face Recognition Service with AWS Rekognition! [Archivo de Vídeo]. YouTube. https://www.youtube.com/watch?v=oHSesteFK5c&t=867s
+ - GitHub. (23 de diciembre de 2023). Weapons-and-Knives-Detector-with-YOLOv8. https://github.com/JoaoAssalim/Weapons-and-Knives-Detector-with-YOLOv8
+
+
