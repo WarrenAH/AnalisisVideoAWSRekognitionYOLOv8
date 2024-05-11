@@ -16,7 +16,7 @@ El presente proyecto fue credo utilizando Windows. Es necesario tener instalado 
  - pil
  - ultralytics
  - moviepy.editor
-Una vez instaladas, es necesario tener una cuenta en AWS para acceder a los servicios de: Lambda, S3, Rekognition, y DynamoDB, luego, seguir los siguientes pasos:
+ Una vez instaladas, es necesario tener una cuenta en AWS para acceder a los servicios de: Lambda, S3, Rekognition, y DynamoDB, luego, seguir los siguientes pasos:
  1. Se deberá acceder a AWS y buscar IAM (Identity and Access Management), dentro, se debe acceder a la sección que dice Administración del acceso. Una vez en esta sección se mostrará el Panel de IAM, y se deberá tocar el botón que dice Administrar las claves de acceso. Luego, se debe ir donde dice Claves de acceso, tocar el botón que dice Crear clave de acceso, se nos pedirá confirmación, se acepta, una vez creado, se debe apuntar la Clave de acceso y la Clave de acceso secreta, ya que se necesitaran más adelante.
  2. En el CMD de Windows se debe tener acceso a la carpeta donde se encuentra el repositorio clonado, se debe ejecutar el siguiente comando: 
 ```
