@@ -193,21 +193,22 @@ Vin_Diesel.jpg
  18. Una vez presionado el botón anterior, se deberán escoger solo 3 videos con los cuales se hará el reconocimiento facial y los objetos encontrado, una vez seleccionados, se deberá tocar el botón que dice Continuar, se descargara el modelo de YOLOv8 para detección de vehículos, este paso solo se realizara una vez este modelo este descargado. Una vez descargado, se recomienda cerrar el código y volverlo a ejecutar, y ya estará configurado el entorno.
 
 ## Explicación de cada librería
- 1. os: Es utilizada para el manejo de carpetas dentro del proyecto.
- 2. shutil: Su función es manipular las carpetas que existan dentro de una carpeta.
- 3. threading: Gracias a esta, se puede utilizar el multiprocesamiento.
- 4. time: Utilizada para pausar la ejecución en ciertas partes del código en el multiprocesamiento.
- 5. boto3: Es para utilizar los distintos servicios de AWS (Amazon Web Services), en específico el S3 (subir imágenes del entrenamiento en el almacenamiento de la nube), DynamoDB (base de datos que permite manejar a través de una tabla cada una de las personas registradas en el entrenamiento) y Rekognition (detección de personas y rostros).
- 6. io: Es implementada en el manejo de archivos, como en los fotogramas de los videos.
- 7. cv2: Creación de etiquetas y cuadros de caras u objetos detectados en los fotogramas de los videos.
- 8. tkinter: Utilización de interfaz gráfica en Python.
- 9. pil: Manejo de imágenes para YOLOv8 y AWS.
- 10. ultralytics: librería necesaria para la utilización de YOLOv8 para detección de objetos.
- 11. moviepy.editor: Su función es dividir en fotogramas los videos seleccionados.
+ - os: Es utilizada para el manejo de carpetas dentro del proyecto.
+ - shutil: Su función es manipular las carpetas que existan dentro de una carpeta.
+ - threading: Gracias a esta, se puede utilizar el multiprocesamiento.
+ - time: Utilizada para pausar la ejecución en ciertas partes del código en el multiprocesamiento.
+ - boto3: Es para utilizar los distintos servicios de AWS (Amazon Web Services), en específico el S3 (subir imágenes del entrenamiento en el almacenamiento de la nube), DynamoDB (base de datos que permite manejar a través de una tabla cada una de las personas registradas en el entrenamiento) y Rekognition (detección de personas y rostros).
+ - io: Es implementada en el manejo de archivos, como en los fotogramas de los videos.
+ - cv2: Creación de etiquetas y cuadros de caras u objetos detectados en los fotogramas de los videos.
+ - tkinter: Utilización de interfaz gráfica en Python.
+ - pil: Manejo de imágenes para YOLOv8 y AWS.
+ - ultralytics: librería necesaria para la utilización de YOLOv8 para detección de objetos.
+ - moviepy.editor: Su función es dividir en fotogramas los videos seleccionados.
 
 ## Guía de Uso 
 Una vez instalado y configurado el sistema, se deberá ejecutar el código, escoger máximo 3 videos con los cuales el programa trabajara (solo se pueden utilizar videos en formato .mp4) y darle al botón de Continuar, una vez hecho esto, se ejecutara en multiprocesamiento una extracción de fotogramas donde se mostraran 2 ventanas distintas, una donde se podrá revisar fotograma por fotograma del video los resultados que se encontraron en estos, otra que explicara cuantos objetos se encontraron, cuales en específico así como cuales personas se encontraron y en que fotograma. Los resultados se podrán apreciar en tiempo real sin necesidad de que el programa finalice.
 
 ## Documentacion de API
-AWS Rekognition: https://aws.amazon.com/es/rekognition/
-YOLOv8: https://docs.ultralytics.com/
+ - AWS Rekognition: https://aws.amazon.com/es/rekognition/
+ - YOLOv8: https://docs.ultralytics.com/
+
