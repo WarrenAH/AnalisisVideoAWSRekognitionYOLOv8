@@ -29,19 +29,21 @@ us-east-1
 ```
  4. Una vez hecho esto, se debe ejecutar el siguiente comando: 
 ```
-aws rekognition create-collection --collection-id actores --region us-east-1", se desplegará un mensaje de que fue creado. Luego, se debe ejecutar este otro comando: "aws dynamodb create-table --table-name face_recognition --attribute-definitions AttributeName=RekognitionId,AttributeType=S --key-schema AttributeName=RekognitionId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1
+aws rekognition create-collection --collection-id actores --region us-east-1
 ```
-
- 5. Se desplegará un mensaje de que fue creado. El ultimo comando sería el siguiente:
-    
+ 5. Se desplegará un mensaje de que fue creado. Luego, se debe ejecutar este otro comando:
+```
+aws dynamodb create-table --table-name face_recognition --attribute-definitions AttributeName=RekognitionId,AttributeType=S --key-schema AttributeName=RekognitionId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1
+```
+ 6. Se desplegará un mensaje de que fue creado. El ultimo comando sería el siguiente:
 ```
 aws s3 mb s3://actores --region us-east-1
 ```
- 6. En IAM, se debe acceder a la sección de Roles, darle en el botón que dice Crear rol, seleccionar Servicio de AWS, en Servicio o caso de uso se debe escoger Lambda, se debe continuar y donde dice Nombre del rol se debe escribir el siguiente y después darle a Crear rol: 
+ 7. En IAM, se debe acceder a la sección de Roles, darle en el botón que dice Crear rol, seleccionar Servicio de AWS, en Servicio o caso de uso se debe escoger Lambda, se debe continuar y donde dice Nombre del rol se debe escribir el siguiente y después darle a Crear rol: 
 ```
 face_recognition 
 ```
- 7. En IAM, se debe acceder a la sección de Roles nuevamente, se debe buscar el rol creado anteriormente y tocar su nombre, una vez hecho esto, se debe tocar el botón que dice Agregar permisos y luego donde dice Crear política insertada, luego, se debe tocar el botón que dice JSON se debe copiar el siguiente código: 
+ 8. En IAM, se debe acceder a la sección de Roles nuevamente, se debe buscar el rol creado anteriormente y tocar su nombre, una vez hecho esto, se debe tocar el botón que dice Agregar permisos y luego donde dice Crear política insertada, luego, se debe tocar el botón que dice JSON se debe copiar el siguiente código: 
 ```
 {
 	"Version": "2012-10-17",
@@ -83,33 +85,33 @@ face_recognition
 	]
 }
 ```
- 8. Donde dice "Resource", se debe modificar la línea que está en los corchetes (la que está entre comillas):
+ 9. Donde dice "Resource", se debe modificar la línea que está en los corchetes (la que está entre comillas):
 ```
 			"Resource": [
 				"arn:aws:dynamodb:us-east-1:637423633559:table/face_recognition"
 			]
 ```
- 9. Para modificar dicha línea de código se debe hacer lo siguiente: en DynamoDB, se debe acceder a la sección de Tablas, se debe tocar la que dice face_recognition, una vez dentro se debe bajar a la sección que dice Información adicional y tocar dicho botón, finalmente, el código que debemos reemplazar en el paso anterior se deberá sustituir con el texto que aparece en la leyenda de Nombre de recurso de Amazon (ARN), una vez sustituido se debe tocar el botón siguiente. Donde dice Nombre de la política se debe colocar el siguiente nombre y darle al botón de Crear política:
+ 10. Para modificar dicha línea de código se debe hacer lo siguiente: en DynamoDB, se debe acceder a la sección de Tablas, se debe tocar la que dice face_recognition, una vez dentro se debe bajar a la sección que dice Información adicional y tocar dicho botón, finalmente, el código que debemos reemplazar en el paso anterior se deberá sustituir con el texto que aparece en la leyenda de Nombre de recurso de Amazon (ARN), una vez sustituido se debe tocar el botón siguiente. Donde dice Nombre de la política se debe colocar el siguiente nombre y darle al botón de Crear política:
 ```
 face_recognition_policy
 ```
- 10. En Lambda, se debe acceder a la sección de Funciones y darle al botón que dice Crear una funcion, luego, donde dice Nombre de la función se deberá colocar el siguiente:
+ 11. En Lambda, se debe acceder a la sección de Funciones y darle al botón que dice Crear una funcion, luego, donde dice Nombre de la función se deberá colocar el siguiente:
 ```
 face_recognition
 ```
- 11. Una vez colocado el nombre, donde dice Tiempo de ejecucicion se deberá seleccionar la versión de Python más moderna, luego, se debe tocar el botón que dice Cambiar el rol de ejecución predeterminado, luego, tocar el botón que dice Uso de un rol existente, luego se deberá seleccionar el que dice:
+ 12. Una vez colocado el nombre, donde dice Tiempo de ejecucicion se deberá seleccionar la versión de Python más moderna, luego, se debe tocar el botón que dice Cambiar el rol de ejecución predeterminado, luego, tocar el botón que dice Uso de un rol existente, luego se deberá seleccionar el que dice:
 ```
 face_recognition
 ```
- 12. Una vez colocado, se deberá tocar el botón que dice Crear una función, luego en Lamda, se debe acceder a la sección de Funciones nuevamente, se debe buscar la funcion creada anteriormente y tocar su nombre, una vez hecho esto, hay que bajar hasta donde dice Código fuente y tocar el botón que dice Configuración, luego, el botón que dice Desencadenadores, luego, tocar el botón que dice Agregar desencadenador, luego, donde dice Seleccionar un origen se busca S3 y se escoge. Donde dice Bucket se escoge el siguiente:
+ 13. Una vez colocado, se deberá tocar el botón que dice Crear una función, luego en Lamda, se debe acceder a la sección de Funciones nuevamente, se debe buscar la funcion creada anteriormente y tocar su nombre, una vez hecho esto, hay que bajar hasta donde dice Código fuente y tocar el botón que dice Configuración, luego, el botón que dice Desencadenadores, luego, tocar el botón que dice Agregar desencadenador, luego, donde dice Seleccionar un origen se busca S3 y se escoge. Donde dice Bucket se escoge el siguiente:
 ```
 actores
 ```
- 13. Donde dice Tipos de eventos hay que seleccionar el que dice Todos los eventos de creación de objetos, luego, donde dice Prefijo – Opcional se deberá escribir el siguiente:
+ 14. Donde dice Tipos de eventos hay que seleccionar el que dice Todos los eventos de creación de objetos, luego, donde dice Prefijo – Opcional se deberá escribir el siguiente:
 ```
 index/
 ```
- 14. Una vez escrito, se deberá aceptar el check que dice Invocación recurrente, una vez seleccionado, se deberá tocar el botón de Agregar, luego, en Lamda, se debe acceder a la sección de Funciones nuevamente, se debe buscar la funcion creada anteriormente y tocar su nombre, una vez hecho esto, hay que bajar hasta donde dice Código fuente y donde esta el IDE agregar el siguiente código:
+ 15. Una vez escrito, se deberá aceptar el check que dice Invocación recurrente, una vez seleccionado, se deberá tocar el botón de Agregar, luego, en Lamda, se debe acceder a la sección de Funciones nuevamente, se debe buscar la funcion creada anteriormente y tocar su nombre, una vez hecho esto, hay que bajar hasta donde dice Código fuente y donde esta el IDE agregar el siguiente código:
 ```
 from __future__ import print_function
 
@@ -183,12 +185,12 @@ def lambda_handler(event, context):
         print("Error processing object {} from bucket {}. ".format(key, bucket))
         raise e
 ```
- 15. Una vez colocado, se deberán guardar los cambios. Cuando se tenga configurado AWS tocará la parte del entrenamiento de este, con el código de Python descargado junto con todas las librerías necesarias se deberá ejecutar el código en una carpeta deseada y luego cerrarlo. Una vez cerrado, se deberá buscar donde esta la carpeta entrenamiento y agregar las fotos de las personas con las cuales se desea realizar el reconocimiento facial, estas deberán estar en un formato .jpg, a la vez, el nombre de cada imagen debe tener el nombre de la persona a la cual pertenece respetando un formato como el siguiente:
+ 16. Una vez colocado, se deberán guardar los cambios. Cuando se tenga configurado AWS tocará la parte del entrenamiento de este, con el código de Python descargado junto con todas las librerías necesarias se deberá ejecutar el código en una carpeta deseada y luego cerrarlo. Una vez cerrado, se deberá buscar donde esta la carpeta entrenamiento y agregar las fotos de las personas con las cuales se desea realizar el reconocimiento facial, estas deberán estar en un formato .jpg, a la vez, el nombre de cada imagen debe tener el nombre de la persona a la cual pertenece respetando un formato como el siguiente:
 ```
 Vin_Diesel.jpg
 ```
- 16. Se debe agregar cada nombre y apellido con la primera letra en mayúscula, a la vez, debe haber obligatoriamente los (_) como espacios. Una vez agregadas las fotos de las personas, se deberá ejecutar nuevamente el código, en la ventana abierta, se deberá tocar el botón que dice Entrenar y esperar a que se haga la operación, al final, se mostrara un mensaje de confirmación que se hizo correctamente (este paso solo se deberá realizar una única vez), todas las imágenes creadas se almacenaran en el S3 creado anteriormente que funciona como un almacenamiento en la nube, luego, cada imagen tendrá un ID para el reconocimiento facial en la tabla de DynamoDB.
- 17. Una vez presionado el botón anterior, se deberán escoger solo 3 videos con los cuales se hará el reconocimiento facial y los objetos encontrado, una vez seleccionados, se deberá tocar el botón que dice Continuar, se descargara el modelo de YOLOv8 para detección de vehículos, este paso solo se realizara una vez este modelo este descargado. Una vez descargado, se recomienda cerrar el código y volverlo a ejecutar, y ya estará configurado el entorno.
+ 17. Se debe agregar cada nombre y apellido con la primera letra en mayúscula, a la vez, debe haber obligatoriamente los (_) como espacios. Una vez agregadas las fotos de las personas, se deberá ejecutar nuevamente el código, en la ventana abierta, se deberá tocar el botón que dice Entrenar y esperar a que se haga la operación, al final, se mostrara un mensaje de confirmación que se hizo correctamente (este paso solo se deberá realizar una única vez), todas las imágenes creadas se almacenaran en el S3 creado anteriormente que funciona como un almacenamiento en la nube, luego, cada imagen tendrá un ID para el reconocimiento facial en la tabla de DynamoDB.
+ 18. Una vez presionado el botón anterior, se deberán escoger solo 3 videos con los cuales se hará el reconocimiento facial y los objetos encontrado, una vez seleccionados, se deberá tocar el botón que dice Continuar, se descargara el modelo de YOLOv8 para detección de vehículos, este paso solo se realizara una vez este modelo este descargado. Una vez descargado, se recomienda cerrar el código y volverlo a ejecutar, y ya estará configurado el entorno.
 
 ## Explicación de cada librería
  1. os: Es utilizada para el manejo de carpetas dentro del proyecto.
