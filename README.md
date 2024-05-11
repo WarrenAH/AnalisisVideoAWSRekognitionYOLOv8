@@ -35,6 +35,45 @@ aws s3 mb s3://actores --region us-east-1
 ```
  6. En IAM, se debe acceder a la sección de Roles, darle en el botón que dice Crear rol, seleccionar Servicio de AWS, en Servicio o caso de uso se debe escoger Lambda, se debe continuar y donde dice Nombre del rol se debe escribir el siguiente: 
 ```
-face_recognition 
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogGroup",
+				"logs:CreateLogStream",
+				"logs:PutLogEvents"
+			],
+			"Resource": "arn:aws:logs:*:*:*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::actores/*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"dynamodb:PutItem"
+			],
+			"Resource": [
+				"arn:aws:dynamodb:us-east-1:637423633559:table/face_recognition"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"rekognition:IndexFaces"
+			],
+			"Resource": "*"
+		}
+	]
+}
 ```
+
 
