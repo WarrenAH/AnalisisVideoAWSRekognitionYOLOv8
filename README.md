@@ -31,7 +31,9 @@ us-east-1
 ```
 aws rekognition create-collection --collection-id actores --region us-east-1", se desplegará un mensaje de que fue creado. Luego, se debe ejecutar este otro comando: "aws dynamodb create-table --table-name face_recognition --attribute-definitions AttributeName=RekognitionId,AttributeType=S --key-schema AttributeName=RekognitionId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --region us-east-1
 ```
+
  5. Se desplegará un mensaje de que fue creado. El ultimo comando sería el siguiente:
+    
 ```
 aws s3 mb s3://actores --region us-east-1
 ```
