@@ -11,7 +11,6 @@ Características de la computadora con las que se realizaron las pruebas:
  - RAM: 64 GB.
 
 En las siguientes imágenes se puede observar cómo el proyecto funciona analizando 3 videos a la vez:
-
 ![Ventana de fotogramas](Explicacion/VentanaFotogramas.png)
 ![Ventana de fotogramas](Explicacion/VentanaTexto.png)
 
