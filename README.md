@@ -4,6 +4,23 @@
 El presente proyecto fue creado con la finalidad de detección de rostros de personas en videos (específicamente en películas), así como armas o vehículos, utilizando multiprocesamiento, para así procesar “N” cantidad de videos a la vez y mostrar resultados, sin necesidad de que se termine el programa por completo. Gracias a la extracción de fotogramas en los videos se puede conocer si algún objeto aparece en un fotograma en específico, así como reconocer si una persona en específico está en dicho fotograma.
 
 ## Evidencias de los resultados del proyecto
+Características de la computadora con las que se realizaron las pruebas:
+ - Disco utilizado: PCIe Gen4 x4 M.2 2280 Adata Legend 900 (velocidad de lectura 7000MB/s, escritura 5400 MB/s).
+ - Tarjeta de video: NVIDIA RTX A2000 (6 GB GDDR6).
+ - Procesador: Intel i7-13700F.
+ - RAM: 64 GB.
+En las siguientes imágenes se puede observar cómo el proyecto funciona analizando 3 videos a la vez:
+![Ventana de fotogramas](Explicacion/VentanaFotogramas.png)
+![Ventana de fotogramas](Explicacion/VentanaTexto.png)
+
+En la siguiente imagen, el proyecto tardo aproximadamente 4 segundos en su búsqueda de caras y objetos:
+![Ventana de fotogramas](Explicacion/Analisis1.png)
+
+En la siguiente imagen, el proyecto tardo aproximadamente 3 segundos en su búsqueda de caras y objetos:
+![Ventana de fotogramas](Explicacion/Analisis2.png)
+
+En la siguiente imagen, el proyecto tardo aproximadamente 11 segundos en su búsqueda de caras y objetos:
+![Ventana de fotogramas](Explicacion/Analisis3.png)
 
 ## Explicación del modelo utilizado en el proyecto
 ![Diagrama del proyecto](Explicacion/Diagrama.png)
@@ -18,6 +35,8 @@ Primeramente, se explicarán algunos conceptos importantes:
  - Multiprocesamiento: utilizar más de dos procesos a la vez en un sistema, pensado principalmente en la utilización de más de dos funciones al mismo tiempo.
  - Fotograma: imagen o cuadro el cual contiene la escena que sucede en un tiempo en específico de un video.
  - Amazon Rekognition: servicio de análisis de imágenes y video en la nube utilizando inteligencia artificial con el cual es capaz de detectar rostros de AWS.
+ - YOLOv8: You Only Look Once, es un modelo de detección de objetos en imágenes y videos en tiempo real.
+ - Modelo: en el contexto de este proyecto, se referirá a algoritmos de detección de objetos dentro de YOLOv8.
 
 El proyecto fue creado en el lenguaje de programación Python, este sigue una serie de 6 pasos que se detallaran a continuación:
  1. Este hace uso de la función Entrenamiento, esta realiza una iteración de la carpeta Entrenamiento donde están las fotos de las personas con las cuales se va a entrenar el proyecto. Cada imagen debe estar en formato .jpg y a la vez, deben seguir una regla, la cual es que en el nombre de la imagen debe venir el nombre de la persona a la cual va a estar asociada, debe venir cada nombre y apellido con la primera letra en mayúscula, no debe haber espacios, obligatoriamente deben venir con (_), por ejemplo: Vin_Diesel. Para cada imagen de la carpeta Entrenamiento se enviará a AWS utilizando S3 se subirá cada imagen con su respectivo nombre, agregando a su descripción el nombre a la cual la imagen está asociada sin los (_), luego, Lambda actuará como un trigger o disparador, donde, por cada imagen se creará un ID y se almacenará en la columna de RekognitionId, así como el nombre de la descripción de la imagen se almacenará en la columna FullName en la tabla llamada face_recognition de DynamoDB.
