@@ -9,18 +9,20 @@ Características de la computadora con las que se realizaron las pruebas:
  - Tarjeta de video: NVIDIA RTX A2000 (6 GB GDDR6).
  - Procesador: Intel i7-13700F.
  - RAM: 64 GB.
+
 En las siguientes imágenes se puede observar cómo el proyecto funciona analizando 3 videos a la vez:
+
 ![Ventana de fotogramas](Explicacion/VentanaFotogramas.png)
 ![Ventana de fotogramas](Explicacion/VentanaTexto.png)
 
 En la siguiente imagen, el proyecto tardo aproximadamente 4 segundos en su búsqueda de caras y objetos:
-![Ventana de fotogramas](Explicacion/Analisis1.png)
+![Ventana de fotogramas](Explicacion/Analisis1.jpg)
 
 En la siguiente imagen, el proyecto tardo aproximadamente 3 segundos en su búsqueda de caras y objetos:
-![Ventana de fotogramas](Explicacion/Analisis2.png)
+![Ventana de fotogramas](Explicacion/Analisis2.jpg)
 
 En la siguiente imagen, el proyecto tardo aproximadamente 11 segundos en su búsqueda de caras y objetos:
-![Ventana de fotogramas](Explicacion/Analisis3.png)
+![Ventana de fotogramas](Explicacion/Analisis3.jpg)
 
 ## Explicación del modelo utilizado en el proyecto
 ![Diagrama del proyecto](Explicacion/Diagrama.png)
