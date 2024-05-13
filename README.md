@@ -3,6 +3,31 @@
 ## Descripción del proyecto
 El presente proyecto fue creado con la finalidad de detección de rostros de personas en videos (específicamente en películas), así como armas o vehículos, utilizando multiprocesamiento, para así procesar “N” cantidad de videos a la vez y mostrar resultados, sin necesidad de que se termine el programa por completo. Gracias a la extracción de fotogramas en los videos se puede conocer si algún objeto aparece en un fotograma en específico, así como reconocer si una persona en específico está en dicho fotograma.
 
+## Evidencias de los resultados del proyecto
+
+## Explicación del modelo utilizado en el proyecto
+![Diagrama del proyecto](Explicacion/Diagrama.png)
+
+Primeramente, se explicarán algunos conceptos importantes:
+ - AWS: se refiere al servicio Amazon Web Services, el cual es un servicio en la nube con cual se puede integrar a aplicaciones para dar utilizar servicios de IA en imágenes, almacenamiento en la nube, bases de datos, etc.
+ - S3: servicio de almacenamiento en la nube para desarrollo de aplicaciones de AWS.
+ - Lambda: servicio automático que permite ejecutar código sin administrar servidores de AWS.
+- Trigger o disparador: script que se ejecuta en una base de datos cuando se realiza una acción en específico.
+ - DynamoDB: servicio de base de datos NoSQL de AWS.
+ - GUI: es la interfaz gráfica de usuario, gracias a la utilización de imágenes u objetos gráficos se representa la información y acciones disponibles en la interfaz.
+ - Multiprocesamiento: utilizar más de dos procesos a la vez en un sistema, pensado principalmente en la utilización de más de dos funciones al mismo tiempo.
+ - Fotograma: imagen o cuadro el cual contiene la escena que sucede en un tiempo en específico de un video.
+ - Amazon Rekognition: servicio de análisis de imágenes y video en la nube utilizando inteligencia artificial con el cual es capaz de detectar rostros de AWS.
+
+El proyecto fue creado en el lenguaje de programación Python, este sigue una serie de 6 pasos que se detallaran a continuación:
+ 1. Este hace uso de la función Entrenamiento, esta realiza una iteración de la carpeta Entrenamiento donde están las fotos de las personas con las cuales se va a entrenar el proyecto. Cada imagen debe estar en formato .jpg y a la vez, deben seguir una regla, la cual es que en el nombre de la imagen debe venir el nombre de la persona a la cual va a estar asociada, debe venir cada nombre y apellido con la primera letra en mayúscula, no debe haber espacios, obligatoriamente deben venir con (_), por ejemplo: Vin_Diesel. Para cada imagen de la carpeta Entrenamiento se enviará a AWS utilizando S3 se subirá cada imagen con su respectivo nombre, agregando a su descripción el nombre a la cual la imagen está asociada sin los (_), luego, Lambda actuará como un trigger o disparador, donde, por cada imagen se creará un ID y se almacenará en la columna de RekognitionId, así como el nombre de la descripción de la imagen se almacenará en la columna FullName en la tabla llamada face_recognition de DynamoDB.
+ 2. Usando la función InterfazGraficaVideosBusqueda, básicamente, es un GUI. El usuario seleccionará máximo 3 videos en formato .mp4 para ser utilizados dentro del proyecto, por defecto, el proyecto buscará los videos en la carpeta Video, pero, el usuario podrá escogerlos en otra ubicación.
+ 3. Usando la función Programa, el multiprocesamiento se encargará a partir de ahora de las próximas tareas que se explicaran en los siguientes puntos. Cuando este se ejecute, primeramente, se utilizará la función EliminarCarpetas, que se encargara de borrar la carpeta Fotograma y más adelante se creara nuevamente, de esta manera se borraran archivos almacenados anteriormente.
+ 4. Con el uso de la función ExtraerFotogramas, con los videos solicitados en el paso 2, se hará una iteración de estos, con la utilidad de extraer sus fotogramas en formato .jpg en un intervalo de cada 5 segundos. Todos los fotogramas se guardarán en la carpeta Fotograma, en subcarpetas, estas tendrán el nombre del video al cual se está ejecutando en el proyecto.
+ 5. Utilizando las funciones DetectarPersona y EncontrarCarasObjetos se realiza una iteración de los fotogramas de las subcarpetas, primeramente, se verificará si existe al menos una cara en el fotograma, si existe, se hará una iteración de las imágenes existentes en S3 y con Amazon Rekognition se verificará que exista alguna coincidencia, si existe, se le preguntará a DynamoDB como se llama la persona. Una vez, con estos datos, se registrará en un archivo .txt con el nombre de dicho video el nombre de la imagen que será el tiempo del fotograma del video y el nombre de la o las personas encontradas, además de esto, se escribirá en el fotograma analizado los cuadros de todas las caras encontradas, así como su nombre, si alguna cara no coincide con ninguna de S3 se colocará como desconocido y no escribirá ningún resultado en el archivo .txt. Además, utilizando la función InterfazGraficaResultadosTexto se mostrarán los resultados de los archivos .txt de cada video analizado en tiempo real.
+ 6. En este último paso se utilizaron las funciones EncontrarObjetos y EncontrarCarasObjetos, se realiza una iteración de los fotogramas de las subcarpetas, utilizando YOLOv8 con 2 modelos diferentes se encontrarán los siguientes objetos: bicicletas, carros, motocicletas, aviones, buses, trenes, camiones, botes, armas y cuchillos. Se verificará que exista alguna coincidencia, si existe, se le preguntará a YOLOv8 como se llama el o los objetos encontrados. Una vez, con estos datos, se registrará en el mismo archivo .txt del paso 5 el nombre de la imagen que será el tiempo del fotograma del video y el nombre del o los objetos encontrados, así como la cantidad de estos, además de esto, se escribirá en el fotograma analizado los cuadros de todos los objetos encontradas, así como su nombre, si no se encontró al menos un objeto este no escribirá ningún resultado en el archivo .txt. Además, utilizando la función InterfazGraficaResultadosImagenes se mostrarán los resultados de los fotogramas de cada video analizado en tiempo real.
+
+
 ## Instrucciones de Instalación
 El presente proyecto fue credo utilizando Windows. Es necesario tener instalado Python, así como las siguientes librerías:
  - os 
